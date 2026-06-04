@@ -588,11 +588,10 @@
   </main>
 
   <script>
-    function handleLogin(e) {
+  function handleLogin(e) {
       e.preventDefault();
       const btn = document.getElementById('loginBtn');
       btn.classList.add('loading');
-      // Simulate auth — replace with real logic
       setTimeout(() => {
         btn.classList.remove('loading');
         window.location.href = 'dashboard.html';
