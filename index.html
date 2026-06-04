@@ -9,6 +9,23 @@
 </head>
 <body>
 
+  <!-- ===== NAVBAR (ADDED BACK) ===== -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <img src="assets/logo.jpg" alt="MGEMS Logo" class="nav-logo-img" onerror="this.src='https://via.placeholder.com/40'"/>
+      <span class="nav-brand">MGEMS</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="login.html" class="nav-login-btn">Staff Portal</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
   <!-- Hero Section with Video -->
   <section class="hero">
     <video class="hero-video" autoplay loop muted playsinline>
@@ -91,5 +108,10 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('open');
+    }
+  </script>
 </body>
 </html>
