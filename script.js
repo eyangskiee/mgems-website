@@ -2,7 +2,6 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   
-  // Gallery card animation on scroll
   const galleryCards = document.querySelectorAll('.gallery-card');
   
   function checkVisibility() {
@@ -15,13 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // Initial check
   checkVisibility();
-  
-  // Check on scroll
   window.addEventListener('scroll', checkVisibility);
   
-  // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
