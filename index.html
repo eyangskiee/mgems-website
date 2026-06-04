@@ -3,583 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Brgy. Manuel Guianga Emergency Services | MGEMS</title>
+  <title>Brgy. Manuel Guianga Emergency Services</title>
+  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <style>
-    /* ==================================================================
-       MGEMS COMPLETE STYLESHEET - RED & WHITE THEME
-    ================================================================== */
-    
-    /* RESET */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Barlow', sans-serif;
-      background: #0a0a0a;
-      color: white;
-      overflow-x: hidden;
-    }
-
-    /* ===== NAVBAR ===== */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 40px;
-      height: 70px;
-      background: rgba(10, 10, 10, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 2px solid #c0001c;
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .nav-logo-img {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #c0001c;
-    }
-
-    .nav-brand {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.5rem;
-      color: white;
-      letter-spacing: 2px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-weight: 600;
-      font-size: 0.85rem;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: #c0001c;
-    }
-
-    .nav-login-btn {
-      background: #c0001c;
-      color: white !important;
-      padding: 8px 20px;
-      border-radius: 30px;
-    }
-
-    .nav-login-btn:hover {
-      background: #8a0013;
-    }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-    }
-
-    .hamburger span {
-      width: 24px;
-      height: 2px;
-      background: white;
-    }
-
-    /* ===== HERO SECTION ===== */
-    .hero {
-      position: relative;
-      height: 100vh;
-      min-height: 600px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .hero-video {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.8));
-      z-index: 1;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 0 20px;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      border: 2px solid #c0001c;
-      color: #c0001c;
-      font-weight: 700;
-      font-size: 0.75rem;
-      letter-spacing: 0.3em;
-      padding: 6px 18px;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-    }
-
-    .hero-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3rem, 8vw, 6rem);
-      line-height: 1.1;
-      color: white;
-      text-shadow: 0 0 30px rgba(0,0,0,0.5);
-    }
-
-    .hero-title .thin {
-      font-family: 'Barlow', sans-serif;
-      font-weight: 300;
-      font-size: clamp(0.8rem, 3vw, 1.2rem);
-      display: block;
-      letter-spacing: 0.5em;
-      color: rgba(255,255,255,0.8);
-    }
-
-    .hero-sub {
-      font-size: clamp(0.7rem, 2vw, 0.9rem);
-      letter-spacing: 0.3em;
-      font-weight: 600;
-      color: #e8001f;
-      margin-top: 15px;
-      text-transform: uppercase;
-    }
-
-    .hero-buttons {
-      margin-top: 40px;
-    }
-
-    .hero-cta {
-      display: inline-block;
-      padding: 14px 40px;
-      background: #c0001c;
-      color: white;
-      text-decoration: none;
-      border-radius: 40px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: 0.2s;
-    }
-
-    .hero-cta:hover {
-      background: #8a0013;
-      transform: translateY(-2px);
-    }
-
-    .hero-login {
-      display: inline-block;
-      margin-left: 15px;
-      padding: 14px 32px;
-      border: 2px solid rgba(255,255,255,0.3);
-      color: white;
-      text-decoration: none;
-      border-radius: 40px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: 0.2s;
-    }
-
-    .hero-login:hover {
-      border-color: #c0001c;
-      background: rgba(192,0,28,0.2);
-    }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 28px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.7rem;
-      letter-spacing: 0.35em;
-      color: rgba(255,255,255,0.4);
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%,100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(8px); }
-    }
-
-    /* ===== ABOUT SECTION ===== */
-    .about {
-      background: white;
-      padding: 80px 24px;
-    }
-
-    .about-inner {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .about-label {
-      background: #c0001c;
-      color: white;
-      display: inline-block;
-      padding: 6px 20px;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      margin-bottom: 40px;
-    }
-
-    .about-quote {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(1.5rem, 4vw, 2.2rem);
-      line-height: 1.3;
-      border-left: 5px solid #c0001c;
-      padding-left: 25px;
-      text-align: left;
-      color: #1a1a2e;
-      margin-bottom: 30px;
-    }
-
-    .about-body {
-      color: #444;
-      line-height: 1.8;
-      font-size: 1rem;
-      margin-bottom: 15px;
-    }
-
-    .about-body strong {
-      color: #c0001c;
-    }
-
-    /* ===== GALLERY SECTION ===== */
-    .gallery {
-      background: #0a0e1a;
-      padding: 80px 24px;
-    }
-
-    .gallery-header {
-      text-align: center;
-      margin-bottom: 50px;
-    }
-
-    .gallery-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      color: white;
-    }
-
-    .gallery-title span {
-      color: #e8001f;
-    }
-
-    .gallery-sub {
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 2px;
-      margin-top: 10px;
-      font-size: 0.8rem;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .gallery-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 12px;
-      cursor: pointer;
-    }
-
-    .gallery-card.wide {
-      grid-column: span 2;
-    }
-
-    .gallery-card img {
-      width: 100%;
-      height: 320px;
-      object-fit: cover;
-      transition: transform 0.4s;
-    }
-
-    .gallery-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .card-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(192,0,28,0.9), transparent);
-      padding: 30px 20px 15px;
-      text-align: center;
-      transform: translateY(100%);
-      transition: transform 0.3s;
-    }
-
-    .gallery-card:hover .card-overlay {
-      transform: translateY(0);
-    }
-
-    .card-overlay span {
-      color: white;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-
-    /* ===== VALUES BAR ===== */
-    .values {
-      background: #c0001c;
-      padding: 25px 24px;
-    }
-
-    .values-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-
-    .value-item {
-      color: white;
-      font-weight: 700;
-      letter-spacing: 1px;
-      font-size: 0.9rem;
-    }
-
-    /* ===== CONTACT FORM - FULLY STYLED ===== */
-    .contact-section {
-      background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
-      padding: 80px 24px;
-    }
-
-    .contact-container {
-      max-width: 850px;
-      margin: 0 auto;
-    }
-
-    .contact-header {
-      text-align: center;
-      margin-bottom: 45px;
-    }
-
-    .contact-header h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 3rem;
-      color: #c0001c;
-      letter-spacing: 2px;
-      position: relative;
-      display: inline-block;
-    }
-
-    .contact-header h2::after {
-      content: '';
-      position: absolute;
-      bottom: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 70px;
-      height: 3px;
-      background: #c0001c;
-      border-radius: 2px;
-    }
-
-    .contact-header p {
-      color: #666;
-      font-size: 1rem;
-      margin-top: 30px;
-    }
-
-    .contact-form {
-      background: white;
-      padding: 45px;
-      border-radius: 28px;
-      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.08);
-      border: 1px solid #eaeef5;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 15px 18px;
-      border: 2px solid #e2e8f0;
-      border-radius: 16px;
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.95rem;
-      transition: all 0.2s ease;
-      background: #fafbfc;
-      outline: none;
-    }
-
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-      border-color: #c0001c;
-      background: white;
-      box-shadow: 0 0 0 4px rgba(192, 0, 28, 0.1);
-    }
-
-    .contact-form textarea {
-      resize: vertical;
-      min-height: 130px;
-      margin-bottom: 25px;
-    }
-
-    .send-btn {
-      background: #c0001c;
-      color: white;
-      border: none;
-      padding: 16px 32px;
-      border-radius: 60px;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      width: 100%;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      transition: all 0.3s ease;
-      font-family: 'Barlow', sans-serif;
-    }
-
-    .send-btn:hover {
-      background: #8a0013;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(192, 0, 28, 0.3);
-    }
-
-    .form-note {
-      text-align: center;
-      margin-top: 18px;
-      font-size: 0.85rem;
-      color: #777;
-    }
-
-    /* ===== FOOTER ===== */
-    .footer {
-      background: #0a0a0a;
-      text-align: center;
-      padding: 50px 24px 40px;
-      border-top: 4px solid #c0001c;
-    }
-
-    .footer-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.8rem;
-      color: #c0001c;
-      margin-bottom: 10px;
-    }
-
-    .footer p {
-      color: rgba(255,255,255,0.5);
-      font-size: 0.85rem;
-      letter-spacing: 1px;
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      .navbar {
-        padding: 0 20px;
-      }
-      
-      .nav-links {
-        display: none;
-        position: fixed;
-        top: 70px;
-        left: 0;
-        right: 0;
-        background: #0a0a0a;
-        flex-direction: column;
-        padding: 25px;
-        gap: 20px;
-        text-align: center;
-        border-bottom: 1px solid #c0001c;
-      }
-      
-      .nav-links.open {
-        display: flex;
-      }
-      
-      .hamburger {
-        display: flex;
-      }
-      
-      .gallery-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .gallery-card.wide {
-        grid-column: span 1;
-      }
-      
-      .gallery-card img {
-        height: 260px;
-      }
-      
-      .contact-form {
-        padding: 28px;
-      }
-      
-      .form-row {
-        grid-template-columns: 1fr;
-        gap: 15px;
-      }
-      
-      .contact-header h2 {
-        font-size: 2.2rem;
-      }
-      
-      .hero-title {
-        font-size: 2.5rem;
-      }
-    }
-  </style>
 </head>
 <body>
 
   <!-- ===== NAVBAR ===== -->
   <nav class="navbar">
     <div class="nav-logo">
-      <img src="assets/logo.jpg" alt="MGEMS" class="nav-logo-img" onerror="this.src='https://placehold.co/45x45?text=MGEMS'"/>
+      <img src="assets/logo.jpg" alt="MGEMS Logo" class="nav-logo-img" onerror="this.src='https://via.placeholder.com/40'"/>
       <span class="nav-brand">MGEMS</span>
     </div>
     <ul class="nav-links">
@@ -592,38 +25,55 @@
     </div>
   </nav>
 
-  <!-- ===== HERO SECTION ===== -->
+  <!-- Hero Section with Video -->
   <section class="hero">
     <video class="hero-video" autoplay loop muted playsinline>
       <source src="assets/video.mp4" type="video/mp4" />
     </video>
     <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <div class="hero-badge">EST. 2018</div>
-      <h1 class="hero-title">
-        <span class="thin">BRGY. MANUEL GUIANGA</span>
-        EMERGENCY MEDICAL SERVICES
-      </h1>
-      <div class="hero-sub">ONE TEAM. ONE MISSION. — SAVING LIVES, SERVING OUR COMMUNITY.</div>
-      <div class="hero-buttons">
-        <a href="#about" class="hero-cta">EXPLORE MGEMS</a>
-        <a href="login.html" class="hero-login">STAFF PORTAL →</a>
+    
+    <!-- ECG Heartbeat Overlay -->
+    <div class="ecg-title-wrap">
+      <div class="ecg-overlay">
+        <svg class="ecg-svg" viewBox="0 0 1200 80" preserveAspectRatio="none">
+          <polyline class="ecg-glow" points="0,40 100,40 120,20 140,60 160,20 180,40 300,40 320,10 340,60 360,30 380,50 500,40 520,40 540,20 560,60 580,20 600,40 700,40 720,10 740,60 760,30 780,50 900,40 920,20 940,60 960,20 980,40 1100,40 1120,60 1140,20 1160,60 1180,40 1200,40" />
+          <polyline class="ecg-line" points="0,40 100,40 120,20 140,60 160,20 180,40 300,40 320,10 340,60 360,30 380,50 500,40 520,40 540,20 560,60 580,20 600,40 700,40 720,10 740,60 760,30 780,50 900,40 920,20 940,60 960,20 980,40 1100,40 1120,60 1140,20 1160,60 1180,40 1200,40" />
+        </svg>
+        <div class="ecg-dot"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge">EST. 2018</div>
+        <h1 class="hero-title">
+          <span class="thin">BRGY. MANUEL GUIANGA</span><br/>
+          EMERGENCY MEDICAL SERVICES
+        </h1>
+        <div class="hero-sub">ONE TEAM. ONE MISSION. — SAVING LIVES, SERVING OUR COMMUNITY.</div>
+        <div class="hero-tagline">⏷ <em>SCROLL</em> ⏷</div>
+        <div>
+          <a href="#about" class="hero-cta">EXPLORE MGEMS</a>
+          <a href="login.html" class="hero-login">STAFF PORTAL →</a>
+        </div>
       </div>
     </div>
-    <div class="scroll-hint">✦ SCROLL ✦</div>
+    <div class="scroll-hint">✦ ✦ ✦</div>
   </section>
 
-  <!-- ===== ABOUT SECTION ===== -->
+  <!-- About Section (Tribute Message) -->
   <section id="about" class="about">
     <div class="about-inner">
       <div class="about-label">EMS WEEK TRIBUTE</div>
       <div class="about-quote">"Behind the services the committee provides are the people who continuously support the cost and drive for better pre-hospital care."</div>
-      <div class="about-body">The MGEMS has a dynamic composition, including <strong>first responders, student nurses, EMTs, AEMTs, midwives, Registered Nurses, and Emergency Medicine Physicians</strong>.</div>
-      <div class="about-body">As the EMS week approaches, the committee extends our sincere appreciation and gratitude for the services you offer to the community, humanity, and the Almighty.</div>
+      <div class="about-body">
+        The MGEMS has a dynamic composition, including <strong>first responders, student nurses, EMTs, AEMTs, midwives, Registered Nurses, and Emergency Medicine Physicians</strong>.
+      </div>
+      <div class="about-body">
+        As the EMS week approaches, the committee extends our sincere appreciation and gratitude for the services you offer to the community, humanity, and the Almighty.
+      </div>
+      <div class="divider"><span></span><span class="cross">✦</span><span></span></div>
     </div>
   </section>
 
-  <!-- ===== GALLERY SECTION ===== -->
+  <!-- Gallery Section - FACES OF MGEMS -->
   <section class="gallery">
     <div class="gallery-header">
       <div class="gallery-title">FACES OF <span>MANUEL GUIANGA</span></div>
@@ -653,18 +103,22 @@
     </div>
   </section>
 
-  <!-- ===== VALUES BAR ===== -->
+  <!-- Values Bar -->
   <div class="values">
     <div class="values-inner">
-      <span class="value-item">🤝 Compassion</span>
-      <span class="value-item">⚕️ Competence</span>
-      <span class="value-item">🛡️ Courage</span>
-      <span class="value-item">👥 Teamwork</span>
-      <span class="value-item">🤜 Commitment</span>
+      <div class="value-item"><span class="val-icon">🤝</span> Compassion</div>
+      <span class="sep">|</span>
+      <div class="value-item"><span class="val-icon">⚕️</span> Competence</div>
+      <span class="sep">|</span>
+      <div class="value-item"><span class="val-icon">🛡️</span> Courage</div>
+      <span class="sep">|</span>
+      <div class="value-item"><span class="val-icon">👥</span> Teamwork</div>
+      <span class="sep">|</span>
+      <div class="value-item"><span class="val-icon">🤜</span> Commitment</div>
     </div>
   </div>
 
-  <!-- ===== CONTACT FORM - MESSAGE BOX ===== -->
+  <!-- Contact / Message Box Section -->
   <section class="contact-section">
     <div class="contact-container">
       <div class="contact-header">
@@ -686,11 +140,11 @@
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- Footer -->
   <footer class="footer">
     <div class="footer-logo">MGEMS</div>
     <p>Manuel Guianga Emergency Medical Services</p>
-    <p style="font-size: 0.7rem; opacity: 0.4;">© 2018 — Serving with Honor and Excellence</p>
+    <p class="footer-small">© 2018 — Serving with Honor and Excellence</p>
   </footer>
 
   <script>
@@ -699,40 +153,39 @@
       document.querySelector('.nav-links').classList.toggle('open');
     }
 
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
+    // Gallery scroll animation
+    document.addEventListener('DOMContentLoaded', function() {
+      const galleryCards = document.querySelectorAll('.gallery-card');
+      
+      function checkVisibility() {
+        galleryCards.forEach(card => {
+          const rect = card.getBoundingClientRect();
+          const isVisible = rect.top < window.innerHeight - 100;
+          if (isVisible) {
+            card.classList.add('visible');
+          }
+        });
+      }
+      
+      checkVisibility();
+      window.addEventListener('scroll', checkVisibility);
+      
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
       });
     });
 
-    // Gallery cards animation on scroll
-    const galleryCards = document.querySelectorAll('.gallery-card');
-    function checkGalleryVisibility() {
-      galleryCards.forEach(card => {
-        const rect = card.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-          card.style.opacity = '1';
-          card.style.transform = 'translateY(0)';
-        }
-      });
-    }
-    galleryCards.forEach(card => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(30px)';
-      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    });
-    checkGalleryVisibility();
-    window.addEventListener('scroll', checkGalleryVisibility);
-
-    // Contact form submission
-    const contactForm = document.getElementById('messageForm');
-    if (contactForm) {
-      contactForm.addEventListener('submit', async function(e) {
+    // Contact form handling
+    const messageForm = document.getElementById('messageForm');
+    if (messageForm) {
+      messageForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         const form = e.target;
         const statusDiv = document.getElementById('formStatus');
@@ -751,14 +204,23 @@
           if (response.ok) {
             statusDiv.innerHTML = '✅ Message sent successfully! We\'ll get back to you soon.';
             statusDiv.style.color = '#2e7d32';
+            statusDiv.style.background = '#e8f5e9';
+            statusDiv.style.padding = '10px';
+            statusDiv.style.borderRadius = '8px';
             form.reset();
           } else {
             statusDiv.innerHTML = '❌ Oops! Something went wrong. Please try again.';
             statusDiv.style.color = '#c62828';
+            statusDiv.style.background = '#ffebee';
+            statusDiv.style.padding = '10px';
+            statusDiv.style.borderRadius = '8px';
           }
         } catch (error) {
           statusDiv.innerHTML = '❌ Network error. Please check your connection.';
           statusDiv.style.color = '#c62828';
+          statusDiv.style.background = '#ffebee';
+          statusDiv.style.padding = '10px';
+          statusDiv.style.borderRadius = '8px';
         }
         
         sendBtn.disabled = false;
@@ -766,6 +228,7 @@
         
         setTimeout(() => {
           statusDiv.innerHTML = '';
+          statusDiv.style.padding = '';
         }, 5000);
       });
     }
