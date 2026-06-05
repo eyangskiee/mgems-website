@@ -142,28 +142,34 @@
       margin-bottom: 20px;
     }
 
-    /* ECG LINE CONTAINER - Behind the text */
-    .ecg-wrapper {
+    /* TITLE CONTAINER WITH ECG BEHIND */
+    .title-container {
       position: relative;
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto 30px auto;
+      display: inline-block;
+      width: auto;
+      margin: 0 auto;
+    }
+
+    /* ECG BACKGROUND - Behind the title */
+    .ecg-background {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 110%;
       height: 120px;
-      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
     }
 
     .ecg-svg {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
       width: 100%;
-      height: 100px;
+      height: 100%;
     }
 
     .ecg-path {
       fill: none;
-      stroke: #c0001c;
+      stroke: rgba(192, 0, 28, 0.5);
       stroke-width: 3;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -174,8 +180,8 @@
 
     .ecg-path-glow {
       fill: none;
-      stroke: rgba(192, 0, 28, 0.4);
-      stroke-width: 8;
+      stroke: rgba(192, 0, 28, 0.2);
+      stroke-width: 10;
       stroke-linecap: round;
       stroke-linejoin: round;
       stroke-dasharray: 3000;
@@ -202,14 +208,13 @@
       }
     }
 
-    /* Pulsing dot at the end of ECG line */
+    /* Pulsing dot */
     .ecg-dot {
       position: absolute;
-      right: 0;
       top: 50%;
       transform: translateY(-50%);
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       background: #c0001c;
       border-radius: 50%;
       box-shadow: 0 0 15px 5px rgba(192, 0, 28, 0.8);
@@ -219,7 +224,7 @@
 
     @keyframes pulseDot {
       0% {
-        right: -10px;
+        left: -10px;
         opacity: 0;
       }
       10% {
@@ -229,11 +234,11 @@
         opacity: 1;
       }
       60% {
-        right: 100%;
+        left: 100%;
         opacity: 1;
       }
       100% {
-        right: 100%;
+        left: 100%;
         opacity: 0;
       }
     }
@@ -245,7 +250,8 @@
       color: white;
       text-shadow: 0 0 30px rgba(0,0,0,0.5);
       position: relative;
-      z-index: 10;
+      z-index: 2;
+      letter-spacing: 2px;
     }
 
     .hero-title .thin {
@@ -255,6 +261,7 @@
       display: block;
       letter-spacing: 0.5em;
       color: rgba(255,255,255,0.8);
+      margin-bottom: 8px;
     }
 
     .hero-sub {
@@ -264,13 +271,13 @@
       color: #e8001f;
       margin-top: 15px;
       position: relative;
-      z-index: 10;
+      z-index: 2;
     }
 
     .hero-buttons {
       margin-top: 40px;
       position: relative;
-      z-index: 10;
+      z-index: 2;
     }
 
     .hero-cta {
@@ -319,7 +326,7 @@
       letter-spacing: 0.35em;
       color: rgba(255,255,255,0.4);
       animation: bounce 2s infinite;
-      z-index: 10;
+      z-index: 2;
     }
 
     @keyframes bounce {
@@ -494,8 +501,7 @@
       .gallery-grid { grid-template-columns: 1fr; }
       .gallery-card.wide { grid-column: span 1; }
       .gallery-card img { height: 260px; }
-      .ecg-wrapper { height: 80px; }
-      .ecg-svg { height: 60px; }
+      .ecg-background { height: 80px; }
     }
   </style>
 </head>
@@ -527,21 +533,23 @@
     <div class="hero-content">
       <div class="hero-badge">EST. 2018</div>
       
-      <!-- ECG HEARTBEAT LINE - Behind the title -->
-      <div class="ecg-wrapper">
-        <svg class="ecg-svg" viewBox="0 0 1200 100" preserveAspectRatio="none">
-          <!-- Glow behind -->
-          <polyline class="ecg-path-glow" points="0,50 80,50 100,25 120,75 140,25 160,50 280,50 300,15 320,85 340,35 360,65 480,50 500,50 520,25 540,75 560,25 580,50 680,50 700,15 720,85 740,35 760,65 880,50 900,25 920,75 940,25 960,50 1080,50 1100,70 1120,25 1140,75 1160,50 1200,50" />
-          <!-- Main red line -->
-          <polyline class="ecg-path" points="0,50 80,50 100,25 120,75 140,25 160,50 280,50 300,15 320,85 340,35 360,65 480,50 500,50 520,25 540,75 560,25 580,50 680,50 700,15 720,85 740,35 760,65 880,50 900,25 920,75 940,25 960,50 1080,50 1100,70 1120,25 1140,75 1160,50 1200,50" />
-        </svg>
-        <div class="ecg-dot"></div>
+      <!-- Title with ECG heartbeat line BEHIND it -->
+      <div class="title-container">
+        <!-- ECG line behind the text -->
+        <div class="ecg-background">
+          <svg class="ecg-svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <polyline class="ecg-path-glow" points="0,60 80,60 100,30 120,90 140,30 160,60 280,60 300,20 320,100 340,40 360,80 480,60 500,60 520,30 540,90 560,30 580,60 680,60 700,20 720,100 740,40 760,80 880,60 900,30 920,90 940,30 960,60 1080,60 1100,85 1120,30 1140,90 1160,60 1200,60" />
+            <polyline class="ecg-path" points="0,60 80,60 100,30 120,90 140,30 160,60 280,60 300,20 320,100 340,40 360,80 480,60 500,60 520,30 540,90 560,30 580,60 680,60 700,20 720,100 740,40 760,80 880,60 900,30 920,90 940,30 960,60 1080,60 1100,85 1120,30 1140,90 1160,60 1200,60" />
+          </svg>
+          <div class="ecg-dot"></div>
+        </div>
+        
+        <h1 class="hero-title">
+          <span class="thin">BRGY. MANUEL GUIANGA</span>
+          EMERGENCY MEDICAL SERVICES
+        </h1>
       </div>
       
-      <h1 class="hero-title">
-        <span class="thin">BRGY. MANUEL GUIANGA</span>
-        EMERGENCY MEDICAL SERVICES
-      </h1>
       <div class="hero-sub">ONE TEAM. ONE MISSION. — SAVING LIVES, SERVING OUR COMMUNITY.</div>
       <div class="hero-buttons">
         <a href="#about" class="hero-cta">EXPLORE MGEMS</a>
