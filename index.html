@@ -131,6 +131,7 @@
       width: 100%;
     }
 
+    /* EST. 2018 BADGE */
     .hero-badge {
       display: inline-block;
       border: 2px solid #c0001c;
@@ -138,158 +139,122 @@
       font-weight: 700;
       font-size: 0.75rem;
       letter-spacing: 0.3em;
-      padding: 6px 18px;
-      margin-bottom: 20px;
+      padding: 8px 24px;
+      margin-bottom: 25px;
+      text-transform: uppercase;
     }
 
-    /* TITLE CONTAINER WITH ECG BEHIND */
-    .title-container {
+    /* MAIN TITLE */
+    .main-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      letter-spacing: 3px;
+      color: white;
+      text-shadow: 0 0 20px rgba(0,0,0,0.5);
+      margin-bottom: 10px;
+    }
+
+    /* ECG CONTAINER - Behind the title */
+    .ecg-container {
       position: relative;
-      display: inline-block;
-      width: auto;
+      max-width: 800px;
       margin: 0 auto;
-    }
-
-    /* ECG BACKGROUND - Behind the title */
-    .ecg-background {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 110%;
-      height: 120px;
-      z-index: 0;
-      pointer-events: none;
+      height: 100px;
     }
 
     .ecg-svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    .ecg-path {
-      fill: none;
-      stroke: rgba(192, 0, 28, 0.5);
-      stroke-width: 3;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 3000;
-      stroke-dashoffset: 3000;
-      animation: drawECG 3s linear infinite;
-    }
-
-    .ecg-path-glow {
-      fill: none;
-      stroke: rgba(192, 0, 28, 0.2);
-      stroke-width: 10;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 3000;
-      stroke-dashoffset: 3000;
-      animation: drawECG 3s linear infinite;
-      filter: blur(6px);
-    }
-
-    @keyframes drawECG {
-      0% {
-        stroke-dashoffset: 3000;
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      60% {
-        stroke-dashoffset: 0;
-        opacity: 1;
-      }
-      100% {
-        stroke-dashoffset: 0;
-        opacity: 0;
-      }
-    }
-
-    /* Pulsing dot */
-    .ecg-dot {
       position: absolute;
       top: 50%;
+      left: 0;
       transform: translateY(-50%);
-      width: 10px;
-      height: 10px;
-      background: #c0001c;
-      border-radius: 50%;
-      box-shadow: 0 0 15px 5px rgba(192, 0, 28, 0.8);
-      animation: pulseDot 3s linear infinite;
-      opacity: 0;
+      width: 100%;
+      height: 80px;
     }
 
-    @keyframes pulseDot {
+    .ecg-line {
+      fill: none;
+      stroke: #c0001c;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 2500;
+      stroke-dashoffset: 2500;
+      animation: drawLine 3.5s linear infinite;
+    }
+
+    .ecg-line-glow {
+      fill: none;
+      stroke: rgba(192, 0, 28, 0.3);
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 2500;
+      stroke-dashoffset: 2500;
+      animation: drawLine 3.5s linear infinite;
+      filter: blur(4px);
+    }
+
+    @keyframes drawLine {
       0% {
-        left: -10px;
+        stroke-dashoffset: 2500;
         opacity: 0;
       }
-      10% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
+      15% {
+        opacity: 0.8;
       }
       60% {
-        left: 100%;
-        opacity: 1;
+        stroke-dashoffset: 0;
+        opacity: 0.9;
       }
       100% {
-        left: 100%;
+        stroke-dashoffset: 0;
         opacity: 0;
       }
     }
 
-    .hero-title {
+    /* EMERGENCY MEDICAL SERVICES - Main text with ECG behind */
+    .ems-title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3rem, 8vw, 6rem);
-      line-height: 1.1;
-      color: white;
-      text-shadow: 0 0 30px rgba(0,0,0,0.5);
-      position: relative;
-      z-index: 2;
-      letter-spacing: 2px;
-    }
-
-    .hero-title .thin {
-      font-family: 'Barlow', sans-serif;
-      font-weight: 300;
-      font-size: clamp(0.8rem, 3vw, 1.2rem);
-      display: block;
-      letter-spacing: 0.5em;
-      color: rgba(255,255,255,0.8);
-      margin-bottom: 8px;
-    }
-
-    .hero-sub {
-      font-size: clamp(0.7rem, 2vw, 0.9rem);
-      letter-spacing: 0.3em;
-      font-weight: 600;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: 4px;
       color: #e8001f;
-      margin-top: 15px;
+      text-shadow: 0 0 15px rgba(0,0,0,0.5);
+      margin: 15px 0 20px;
       position: relative;
-      z-index: 2;
+      display: inline-block;
+      padding: 0 20px;
     }
 
+    /* Tagline */
+    .tagline {
+      font-size: clamp(0.7rem, 1.8vw, 0.85rem);
+      letter-spacing: 4px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 15px;
+    }
+
+    .tagline-red {
+      color: #e8001f;
+      font-weight: 600;
+    }
+
+    /* Buttons */
     .hero-buttons {
       margin-top: 40px;
-      position: relative;
-      z-index: 2;
     }
 
     .hero-cta {
       display: inline-block;
-      padding: 14px 40px;
+      padding: 12px 35px;
       background: #c0001c;
       color: white;
       text-decoration: none;
       border-radius: 40px;
       font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      letter-spacing: 1px;
       transition: 0.2s;
     }
 
@@ -301,20 +266,21 @@
     .hero-login {
       display: inline-block;
       margin-left: 15px;
-      padding: 14px 32px;
+      padding: 12px 30px;
       border: 2px solid rgba(255,255,255,0.3);
       color: white;
       text-decoration: none;
       border-radius: 40px;
       font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      letter-spacing: 1px;
       transition: 0.2s;
     }
 
     .hero-login:hover {
       border-color: #c0001c;
-      background: rgba(192,0,28,0.2);
+      background: rgba(192,0,28,0.15);
     }
 
     .scroll-hint {
@@ -326,7 +292,6 @@
       letter-spacing: 0.35em;
       color: rgba(255,255,255,0.4);
       animation: bounce 2s infinite;
-      z-index: 2;
     }
 
     @keyframes bounce {
@@ -501,7 +466,10 @@
       .gallery-grid { grid-template-columns: 1fr; }
       .gallery-card.wide { grid-column: span 1; }
       .gallery-card img { height: 260px; }
-      .ecg-background { height: 80px; }
+      .ecg-container { height: 70px; }
+      .ecg-svg { height: 60px; }
+      .hero-buttons { display: flex; flex-direction: column; gap: 15px; align-items: center; }
+      .hero-login { margin-left: 0; }
     }
   </style>
 </head>
@@ -531,26 +499,27 @@
     <div class="hero-overlay"></div>
     
     <div class="hero-content">
+      <!-- EST. 2018 -->
       <div class="hero-badge">EST. 2018</div>
       
-      <!-- Title with ECG heartbeat line BEHIND it -->
-      <div class="title-container">
-        <!-- ECG line behind the text -->
-        <div class="ecg-background">
-          <svg class="ecg-svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <polyline class="ecg-path-glow" points="0,60 80,60 100,30 120,90 140,30 160,60 280,60 300,20 320,100 340,40 360,80 480,60 500,60 520,30 540,90 560,30 580,60 680,60 700,20 720,100 740,40 760,80 880,60 900,30 920,90 940,30 960,60 1080,60 1100,85 1120,30 1140,90 1160,60 1200,60" />
-            <polyline class="ecg-path" points="0,60 80,60 100,30 120,90 140,30 160,60 280,60 300,20 320,100 340,40 360,80 480,60 500,60 520,30 540,90 560,30 580,60 680,60 700,20 720,100 740,40 760,80 880,60 900,30 920,90 940,30 960,60 1080,60 1100,85 1120,30 1140,90 1160,60 1200,60" />
-          </svg>
-          <div class="ecg-dot"></div>
-        </div>
-        
-        <h1 class="hero-title">
-          <span class="thin">BRGY. MANUEL GUIANGA</span>
-          EMERGENCY MEDICAL SERVICES
-        </h1>
+      <!-- BRGY. MANUEL GUIANGA -->
+      <div class="main-title">BRGY. MANUEL GUIANGA</div>
+      
+      <!-- ECG Heartbeat Line Container -->
+      <div class="ecg-container">
+        <svg class="ecg-svg" viewBox="0 0 1000 80" preserveAspectRatio="none">
+          <polyline class="ecg-line-glow" points="0,40 70,40 90,15 110,65 130,15 150,40 250,40 280,10 310,70 330,30 350,50 450,40 470,40 490,15 510,65 530,15 550,40 650,40 680,10 710,70 730,30 750,50 850,40 870,15 890,65 910,15 930,40 1000,40" />
+          <polyline class="ecg-line" points="0,40 70,40 90,15 110,65 130,15 150,40 250,40 280,10 310,70 330,30 350,50 450,40 470,40 490,15 510,65 530,15 550,40 650,40 680,10 710,70 730,30 750,50 850,40 870,15 890,65 910,15 930,40 1000,40" />
+        </svg>
       </div>
       
-      <div class="hero-sub">ONE TEAM. ONE MISSION. — SAVING LIVES, SERVING OUR COMMUNITY.</div>
+      <!-- EMERGENCY MEDICAL SERVICES -->
+      <div class="ems-title">EMERGENCY MEDICAL SERVICES</div>
+      
+      <!-- Tagline -->
+      <div class="tagline">ONE TEAM. ONE MISSION. — <span class="tagline-red">SAVING LIVES, SERVING OUR COMMUNITY.</span></div>
+      
+      <!-- Buttons -->
       <div class="hero-buttons">
         <a href="#about" class="hero-cta">EXPLORE MGEMS</a>
         <a href="login.html" class="hero-login">STAFF PORTAL →</a>
