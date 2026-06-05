@@ -33,7 +33,9 @@ body {
   overflow-x: hidden;
 }
 
-/* ── NAVBAR ─────────────────────────── */
+/* ─────────────────────────────────────────
+   NAVBAR 
+   ───────────────────────────────────────── */
 .navbar {
   position: fixed;
   top: 0;
@@ -115,7 +117,9 @@ body {
   background: white;
 }
 
-/* ── HERO SECTION ──────────────────── */
+/* ─────────────────────────────────────────
+   HERO SECTION 
+   ───────────────────────────────────────── */
 .hero {
   position: relative;
   height: 100vh;
@@ -171,7 +175,7 @@ body {
   position: relative;
   width: 100%;
   max-width: 1000px;
-  margin: 0 auto 10px auto;
+  margin: 0 auto 15px auto;
   height: 100px;
   overflow: visible;
   z-index: 1;
@@ -185,7 +189,7 @@ body {
 
 .ecg-line-back {
   fill: none;
-  stroke: rgba(232, 0, 31, 0.5);
+  stroke: rgba(232, 0, 31, 0.55);
   stroke-width: 2.5;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -216,11 +220,11 @@ body {
   }
   60% {
     stroke-dashoffset: 0;
-    opacity: 0.8;
+    opacity: 0.85;
   }
   100% {
     stroke-dashoffset: 0;
-    opacity: 0.3;
+    opacity: 0.2;
   }
 }
 
@@ -245,7 +249,7 @@ body {
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--white);
-  text-shadow: 0 0 40px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 1), 0 0 20px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 40px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 1);
   position: relative;
   z-index: 2;
 }
@@ -265,7 +269,7 @@ body {
   letter-spacing: 0.5em;
   font-weight: 600;
   color: var(--red-light);
-  margin-top: 12px;
+  margin-top: 15px;
   text-transform: uppercase;
   position: relative;
   z-index: 2;
@@ -339,7 +343,9 @@ body {
   z-index: 2;
 }
 
-/* ── ABOUT SECTION ─────────────────── */
+/* ─────────────────────────────────────────
+   ABOUT SECTION 
+   ───────────────────────────────────────── */
 .about {
   background: white;
   color: var(--dark);
@@ -406,7 +412,9 @@ body {
   font-size: 1.2rem;
 }
 
-/* ── GALLERY SECTION ───────────────── */
+/* ─────────────────────────────────────────
+   GALLERY SECTION 
+   ───────────────────────────────────────── */
 .gallery {
   background: var(--dark-blue);
   padding: 80px 24px 100px;
@@ -515,7 +523,9 @@ body {
   transform: scaleX(1);
 }
 
-/* ── VALUES BAR ───────────────────── */
+/* ─────────────────────────────────────────
+   VALUES BAR 
+   ───────────────────────────────────────── */
 .values {
   background: var(--red);
   padding: 28px 24px;
@@ -551,7 +561,9 @@ body {
   font-size: 1.1rem;
 }
 
-/* ── FOOTER ───────────────────────── */
+/* ─────────────────────────────────────────
+   FOOTER 
+   ───────────────────────────────────────── */
 .footer {
   background: #000;
   text-align: center;
@@ -579,7 +591,9 @@ body {
   color: rgba(255, 255, 255, 0.3) !important;
 }
 
-/* ── ANIMATIONS ───────────────────── */
+/* ─────────────────────────────────────────
+   ANIMATIONS 
+   ───────────────────────────────────────── */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -600,7 +614,9 @@ body {
   }
 }
 
-/* ── RESPONSIVE ───────────────────── */
+/* ─────────────────────────────────────────
+   RESPONSIVE DESIGN
+   ───────────────────────────────────────── */
 @media (max-width: 768px) {
   .navbar {
     padding: 0 20px;
@@ -652,6 +668,6 @@ body {
 
   .ecg-background {
     height: 60px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
 }
