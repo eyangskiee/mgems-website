@@ -128,6 +128,7 @@
       z-index: 2;
       text-align: center;
       padding: 0 20px;
+      width: 100%;
     }
 
     .hero-badge {
@@ -141,70 +142,100 @@
       margin-bottom: 20px;
     }
 
-    /* ECG ANIMATION - WORKING */
-    .ecg-container {
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto 20px auto;
-      height: 80px;
+    /* ECG LINE CONTAINER - Behind the text */
+    .ecg-wrapper {
       position: relative;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto 30px auto;
+      height: 120px;
       overflow: hidden;
     }
 
-    .ecg-line {
+    .ecg-svg {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
       width: 100%;
-      height: 80px;
-      background: repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 20px,
-        rgba(192, 0, 28, 0.4) 20px,
-        rgba(192, 0, 28, 0.4) 22px,
-        transparent 22px,
-        transparent 40px
-      );
-      background-size: 200% 100%;
-      animation: ecgMove 0.8s linear infinite;
-      position: relative;
+      height: 100px;
     }
 
-    .ecg-line::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -10%;
-      width: 30%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, #c0001c, #c0001c, transparent);
-      animation: ecgPulse 2s ease-in-out infinite;
+    .ecg-path {
+      fill: none;
+      stroke: #c0001c;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 3000;
+      stroke-dashoffset: 3000;
+      animation: drawECG 3s linear infinite;
     }
 
-    .ecg-line::after {
-      content: '♥';
+    .ecg-path-glow {
+      fill: none;
+      stroke: rgba(192, 0, 28, 0.4);
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 3000;
+      stroke-dashoffset: 3000;
+      animation: drawECG 3s linear infinite;
+      filter: blur(6px);
+    }
+
+    @keyframes drawECG {
+      0% {
+        stroke-dashoffset: 3000;
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      60% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
+      100% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+      }
+    }
+
+    /* Pulsing dot at the end of ECG line */
+    .ecg-dot {
       position: absolute;
-      right: 5%;
+      right: 0;
       top: 50%;
       transform: translateY(-50%);
-      color: #c0001c;
-      font-size: 24px;
-      animation: heartBeat 1s ease-in-out infinite;
+      width: 12px;
+      height: 12px;
+      background: #c0001c;
+      border-radius: 50%;
+      box-shadow: 0 0 15px 5px rgba(192, 0, 28, 0.8);
+      animation: pulseDot 3s linear infinite;
+      opacity: 0;
     }
 
-    @keyframes ecgMove {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 200% 0%; }
-    }
-
-    @keyframes ecgPulse {
-      0% { left: -10%; opacity: 0; }
-      20% { opacity: 0.8; }
-      40% { left: 100%; opacity: 0; }
-      100% { left: 100%; opacity: 0; }
-    }
-
-    @keyframes heartBeat {
-      0%, 100% { transform: translateY(-50%) scale(1); opacity: 0.7; }
-      50% { transform: translateY(-50%) scale(1.3); opacity: 1; text-shadow: 0 0 10px #c0001c; }
+    @keyframes pulseDot {
+      0% {
+        right: -10px;
+        opacity: 0;
+      }
+      10% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      60% {
+        right: 100%;
+        opacity: 1;
+      }
+      100% {
+        right: 100%;
+        opacity: 0;
+      }
     }
 
     .hero-title {
@@ -213,6 +244,8 @@
       line-height: 1.1;
       color: white;
       text-shadow: 0 0 30px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 10;
     }
 
     .hero-title .thin {
@@ -230,10 +263,14 @@
       font-weight: 600;
       color: #e8001f;
       margin-top: 15px;
+      position: relative;
+      z-index: 10;
     }
 
     .hero-buttons {
       margin-top: 40px;
+      position: relative;
+      z-index: 10;
     }
 
     .hero-cta {
@@ -282,6 +319,7 @@
       letter-spacing: 0.35em;
       color: rgba(255,255,255,0.4);
       animation: bounce 2s infinite;
+      z-index: 10;
     }
 
     @keyframes bounce {
@@ -456,7 +494,8 @@
       .gallery-grid { grid-template-columns: 1fr; }
       .gallery-card.wide { grid-column: span 1; }
       .gallery-card img { height: 260px; }
-      .ecg-container { height: 50px; }
+      .ecg-wrapper { height: 80px; }
+      .ecg-svg { height: 60px; }
     }
   </style>
 </head>
@@ -478,18 +517,25 @@
     </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO SECTION -->
   <section class="hero">
     <video class="hero-video" autoplay loop muted playsinline>
       <source src="assets/video.mp4" type="video/mp4" />
     </video>
     <div class="hero-overlay"></div>
+    
     <div class="hero-content">
       <div class="hero-badge">EST. 2018</div>
       
-      <!-- ECG HEARTBEAT ANIMATION -->
-      <div class="ecg-container">
-        <div class="ecg-line"></div>
+      <!-- ECG HEARTBEAT LINE - Behind the title -->
+      <div class="ecg-wrapper">
+        <svg class="ecg-svg" viewBox="0 0 1200 100" preserveAspectRatio="none">
+          <!-- Glow behind -->
+          <polyline class="ecg-path-glow" points="0,50 80,50 100,25 120,75 140,25 160,50 280,50 300,15 320,85 340,35 360,65 480,50 500,50 520,25 540,75 560,25 580,50 680,50 700,15 720,85 740,35 760,65 880,50 900,25 920,75 940,25 960,50 1080,50 1100,70 1120,25 1140,75 1160,50 1200,50" />
+          <!-- Main red line -->
+          <polyline class="ecg-path" points="0,50 80,50 100,25 120,75 140,25 160,50 280,50 300,15 320,85 340,35 360,65 480,50 500,50 520,25 540,75 560,25 580,50 680,50 700,15 720,85 740,35 760,65 880,50 900,25 920,75 940,25 960,50 1080,50 1100,70 1120,25 1140,75 1160,50 1200,50" />
+        </svg>
+        <div class="ecg-dot"></div>
       </div>
       
       <h1 class="hero-title">
