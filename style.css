@@ -1,6 +1,7 @@
 /* ═══════════════════════════════════════
    MGEMS — BRGY. MANUEL GUIANGA EMS
    Theme: White + Red, Bold & Official
+   ENHANCED VERSION with 3D Carousel
 ═══════════════════════════════════════ */
 
 * {
@@ -17,7 +18,7 @@ body {
 }
 
 /* ─────────────────────────────────────────
-   NAVBAR 
+   NAVBAR - Enhanced
    ───────────────────────────────────────── */
 .navbar {
   position: fixed;
@@ -33,6 +34,11 @@ body {
   background: rgba(10, 10, 10, 0.95);
   backdrop-filter: blur(12px);
   border-bottom: 2px solid #c0001c;
+  transition: all 0.3s ease;
+}
+
+.navbar:hover {
+  background: rgba(10, 10, 10, 0.98);
 }
 
 .nav-logo {
@@ -47,6 +53,11 @@ body {
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #c0001c;
+  transition: transform 0.3s ease;
+}
+
+.nav-logo-img:hover {
+  transform: rotate(360deg);
 }
 
 .nav-brand {
@@ -54,6 +65,22 @@ body {
   font-size: 1.5rem;
   color: white;
   letter-spacing: 2px;
+  position: relative;
+}
+
+.nav-brand::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #c0001c;
+  transition: width 0.3s ease;
+}
+
+.nav-logo:hover .nav-brand::after {
+  width: 100%;
 }
 
 .nav-links {
@@ -69,7 +96,23 @@ body {
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
-  transition: color 0.2s;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #c0001c;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
 }
 
 .nav-links a:hover {
@@ -83,6 +126,16 @@ body {
   border-radius: 30px;
 }
 
+.nav-login-btn::after {
+  display: none;
+}
+
+.nav-login-btn:hover {
+  background: #8a0013;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(192, 0, 28, 0.4);
+}
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -94,10 +147,15 @@ body {
   width: 24px;
   height: 2px;
   background: white;
+  transition: 0.3s;
+}
+
+.hamburger:hover span {
+  background: #c0001c;
 }
 
 /* ─────────────────────────────────────────
-   HERO SECTION 
+   HERO SECTION - Enhanced
    ───────────────────────────────────────── */
 .hero {
   position: relative;
@@ -120,8 +178,20 @@ body {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.8));
+  background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.8) 100%);
   z-index: 1;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .hero-content {
@@ -130,6 +200,18 @@ body {
   text-align: center;
   padding: 0 20px;
   width: 100%;
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-badge {
@@ -142,6 +224,9 @@ body {
   padding: 8px 24px;
   margin-bottom: 25px;
   text-transform: uppercase;
+  background: rgba(192, 0, 28, 0.1);
+  backdrop-filter: blur(4px);
+  border-radius: 30px;
 }
 
 .main-title {
@@ -149,11 +234,33 @@ body {
   font-size: clamp(2.5rem, 6vw, 4rem);
   letter-spacing: 3px;
   color: white;
-  text-shadow: 0 0 20px rgba(0,0,0,0.5);
+  text-shadow: 0 0 30px rgba(0,0,0,0.5);
   margin-bottom: 10px;
+  position: relative;
+  display: inline-block;
 }
 
-/* ECG CONTAINER */
+.main-title::before {
+  content: '⚕️';
+  position: absolute;
+  left: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  opacity: 0.7;
+}
+
+.main-title::after {
+  content: '⚕️';
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  opacity: 0.7;
+}
+
+/* ECG CONTAINER - Enhanced */
 .ecg-container {
   position: relative;
   max-width: 800px;
@@ -205,11 +312,16 @@ body {
   font-size: clamp(2rem, 5vw, 3.5rem);
   letter-spacing: 4px;
   color: #e8001f;
-  text-shadow: 0 0 15px rgba(0,0,0,0.5);
+  text-shadow: 0 0 20px rgba(232, 0, 31, 0.3);
   margin: 15px 0 20px;
   position: relative;
   display: inline-block;
   padding: 0 20px;
+  background: linear-gradient(135deg, #e8001f, #c0001c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
 }
 
 .tagline {
@@ -240,12 +352,30 @@ body {
   font-size: 0.85rem;
   letter-spacing: 2px;
   text-transform: uppercase;
-  transition: 0.2s;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.hero-cta:hover::before {
+  left: 100%;
 }
 
 .hero-cta:hover {
   background: #8a0013;
   transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(192, 0, 28, 0.4);
 }
 
 .hero-login {
@@ -260,12 +390,13 @@ body {
   font-size: 0.85rem;
   letter-spacing: 2px;
   text-transform: uppercase;
-  transition: 0.2s;
+  transition: all 0.3s ease;
 }
 
 .hero-login:hover {
   border-color: #c0001c;
   background: rgba(192,0,28,0.15);
+  transform: translateY(-2px);
 }
 
 .scroll-hint {
@@ -277,6 +408,7 @@ body {
   letter-spacing: 0.35em;
   color: rgba(255,255,255,0.4);
   animation: bounce 2s infinite;
+  z-index: 2;
 }
 
 @keyframes bounce {
@@ -285,11 +417,22 @@ body {
 }
 
 /* ─────────────────────────────────────────
-   ABOUT SECTION 
+   ABOUT SECTION - Enhanced
    ───────────────────────────────────────── */
 .about {
-  background: white;
-  padding: 80px 24px;
+  background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+  padding: 100px 24px;
+  position: relative;
+}
+
+.about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #c0001c, #e8001f, #c0001c);
 }
 
 .about-inner {
@@ -306,6 +449,7 @@ body {
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   margin-bottom: 40px;
+  border-radius: 30px;
 }
 
 .about-quote {
@@ -316,25 +460,39 @@ body {
   text-align: left;
   color: #1a1a2e;
   margin-bottom: 30px;
+  font-weight: 500;
 }
 
 .about-body {
-  color: #444;
+  color: #555;
   line-height: 1.8;
   margin-bottom: 15px;
+  font-size: 1.05rem;
 }
 
 .about-body strong {
   color: #c0001c;
+  font-weight: 700;
 }
 
 /* ─────────────────────────────────────────
-   3D CAROUSEL GALLERY
+   3D DRAGGABLE CAROUSEL - Enhanced
    ───────────────────────────────────────── */
 .gallery {
-  background: #0a0e1a;
+  background: linear-gradient(135deg, #0a0e1a 0%, #0d1220 100%);
   padding: 80px 24px 120px;
   overflow: hidden;
+  position: relative;
+}
+
+.gallery::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c0001c, transparent);
 }
 
 .gallery-header {
@@ -346,10 +504,29 @@ body {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(2rem, 5vw, 3.5rem);
   color: white;
+  letter-spacing: 2px;
 }
 
 .gallery-title span {
   color: #e8001f;
+  position: relative;
+  display: inline-block;
+}
+
+.gallery-title span::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #e8001f;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.gallery-title:hover span::after {
+  transform: scaleX(1);
 }
 
 .gallery-sub {
@@ -358,12 +535,27 @@ body {
   margin-top: 10px;
 }
 
+.drag-hint {
+  margin-top: 20px;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 1px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.8; }
+}
+
+/* Carousel Styles */
 .carousel-wrapper {
   perspective: 1200px;
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
   padding: 40px 0;
+  overflow: visible;
 }
 
 .carousel-3d {
@@ -371,38 +563,41 @@ body {
   width: 100%;
   height: 400px;
   transform-style: preserve-3d;
-  animation: rotate3D 25s linear infinite;
+  cursor: grab;
+  transition: transform 0.1s ease-out;
 }
 
-.carousel-3d:hover {
-  animation-play-state: paused;
+.carousel-3d:active {
+  cursor: grabbing;
 }
 
 .carousel-item {
   position: absolute;
-  width: 260px;
-  height: 340px;
+  width: 280px;
+  height: 360px;
   left: 50%;
   top: 50%;
-  margin-left: -130px;
-  margin-top: -170px;
+  margin-left: -140px;
+  margin-top: -180px;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
   cursor: pointer;
   border: 2px solid rgba(192, 0, 28, 0.3);
+  background: #1a1a2e;
+  backface-visibility: hidden;
 }
 
 .carousel-item:hover {
-  transform: translateZ(40px) scale(1.05);
+  transform: translateZ(30px) scale(1.05) !important;
   border-color: #c0001c;
-  box-shadow: 0 30px 50px rgba(192, 0, 28, 0.3);
+  box-shadow: 0 30px 60px rgba(192, 0, 28, 0.4);
 }
 
 .carousel-item img {
   width: 100%;
-  height: 100%;
+  height: 75%;
   object-fit: cover;
   transition: transform 0.5s ease;
 }
@@ -416,11 +611,15 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to top, rgba(192, 0, 28, 0.95), transparent);
+  background: linear-gradient(to top, rgba(192, 0, 28, 0.95), rgba(192, 0, 28, 0.7), transparent);
   padding: 20px 15px;
   text-align: center;
   transform: translateY(100%);
   transition: transform 0.3s ease;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .carousel-item:hover .carousel-caption {
@@ -429,27 +628,56 @@ body {
 
 .carousel-caption span {
   color: white;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 1rem;
   letter-spacing: 2px;
   text-transform: uppercase;
+  display: block;
+  margin-bottom: 5px;
 }
 
-@keyframes rotate3D {
-  0% {
-    transform: rotateY(0deg);
-  }
-  100% {
-    transform: rotateY(360deg);
-  }
+.carousel-caption small {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+}
+
+/* Navigation Dots */
+.carousel-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.nav-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-dot:hover {
+  background: rgba(192, 0, 28, 0.7);
+  transform: scale(1.2);
+}
+
+.nav-dot.active {
+  background: #c0001c;
+  width: 24px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(192, 0, 28, 0.5);
 }
 
 /* ─────────────────────────────────────────
-   VALUES BAR 
+   VALUES BAR - Enhanced
    ───────────────────────────────────────── */
 .values {
-  background: #c0001c;
-  padding: 25px 24px;
+  background: linear-gradient(135deg, #c0001c 0%, #8a0013 100%);
+  padding: 30px 24px;
+  position: relative;
 }
 
 .values-inner {
@@ -457,35 +685,48 @@ body {
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 50px;
   flex-wrap: wrap;
 }
 
 .value-item {
   color: white;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
+  padding: 5px 15px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.value-item:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateY(-2px);
 }
 
 /* ─────────────────────────────────────────
-   FOOTER 
+   FOOTER - Enhanced
    ───────────────────────────────────────── */
 .footer {
   background: #0a0a0a;
   text-align: center;
-  padding: 50px 24px 40px;
+  padding: 60px 24px 40px;
   border-top: 4px solid #c0001c;
+  position: relative;
 }
 
 .footer-logo {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.8rem;
+  font-size: 3rem;
   color: #c0001c;
   margin-bottom: 10px;
+  letter-spacing: 4px;
 }
 
 .footer p {
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 1px;
+  font-size: 0.85rem;
 }
 
 /* ─────────────────────────────────────────
@@ -535,22 +776,39 @@ body {
     margin-left: 0;
   }
 
+  .main-title::before,
+  .main-title::after {
+    display: none;
+  }
+
   .carousel-wrapper {
     perspective: 800px;
   }
 
   .carousel-3d {
-    height: 280px;
+    height: 300px;
   }
 
   .carousel-item {
-    width: 180px;
-    height: 240px;
-    margin-left: -90px;
-    margin-top: -120px;
+    width: 200px;
+    height: 260px;
+    margin-left: -100px;
+    margin-top: -130px;
   }
 
   .carousel-caption span {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
+  }
+
+  .carousel-caption small {
+    font-size: 0.6rem;
+  }
+
+  .values-inner {
+    gap: 20px;
+  }
+
+  .value-item {
+    font-size: 0.75rem;
   }
 }
