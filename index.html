@@ -64,69 +64,36 @@
     </div>
   </section>
 
-  <!-- 3D DRAGGABLE CAROUSEL GALLERY -->
+  <!-- 3D CAROUSEL GALLERY WITH DRAG ROTATION -->
   <section class="gallery">
     <div class="gallery-header">
       <div class="gallery-title">FACES OF <span>MANUEL GUIANGA</span></div>
       <div class="gallery-sub">The hearts and hands behind every emergency response</div>
-      <div class="drag-hint">← Drag to rotate 360° →</div>
     </div>
     
     <div class="carousel-wrapper">
       <div class="carousel-3d" id="carousel3d">
         <div class="carousel-item" data-index="0">
           <img src="assets/photo1.jpg" alt="First Responders">
-          <div class="carousel-caption">
-            <span>First Responders</span>
-            <small>Rapid Response Team</small>
-          </div>
+          <div class="carousel-caption"><span>First Responders</span></div>
         </div>
         <div class="carousel-item" data-index="1">
           <img src="assets/photo2.jpg" alt="EMTs & Nurses">
-          <div class="carousel-caption">
-            <span>EMTs & Nurses</span>
-            <small>Primary Care Specialists</small>
-          </div>
+          <div class="carousel-caption"><span>EMTs & Nurses</span></div>
         </div>
         <div class="carousel-item" data-index="2">
           <img src="assets/photo3.jpg" alt="Emergency Physicians">
-          <div class="carousel-caption">
-            <span>Emergency Physicians</span>
-            <small>Medical Directors</small>
-          </div>
+          <div class="carousel-caption"><span>Emergency Physicians</span></div>
         </div>
         <div class="carousel-item" data-index="3">
           <img src="assets/photo4.jpg" alt="Support Team">
-          <div class="carousel-caption">
-            <span>Support Team</span>
-            <small>Logistics & Operations</small>
-          </div>
+          <div class="carousel-caption"><span>Support Team</span></div>
         </div>
         <div class="carousel-item" data-index="4">
           <img src="assets/photo5.jpg" alt="Leadership Committee">
-          <div class="carousel-caption">
-            <span>Leadership Committee</span>
-            <small>Strategic Command</small>
-          </div>
-        </div>
-        <div class="carousel-item" data-index="5">
-          <img src="assets/photo1.jpg" alt="Medical Response Unit">
-          <div class="carousel-caption">
-            <span>Medical Response Unit</span>
-            <small>24/7 Ready</small>
-          </div>
+          <div class="carousel-caption"><span>Leadership Committee</span></div>
         </div>
       </div>
-    </div>
-    
-    <!-- Navigation dots -->
-    <div class="carousel-nav">
-      <div class="nav-dot active" data-index="0"></div>
-      <div class="nav-dot" data-index="1"></div>
-      <div class="nav-dot" data-index="2"></div>
-      <div class="nav-dot" data-index="3"></div>
-      <div class="nav-dot" data-index="4"></div>
-      <div class="nav-dot" data-index="5"></div>
     </div>
   </section>
 
@@ -154,7 +121,7 @@
       document.querySelector('.nav-links').classList.toggle('open');
     }
 
-    // Smooth scroll for anchor links
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -166,7 +133,6 @@
     // ========== DRAGGABLE 3D CAROUSEL ==========
     const carousel = document.getElementById('carousel3d');
     const items = document.querySelectorAll('.carousel-item');
-    const navDots = document.querySelectorAll('.nav-dot');
     const totalItems = items.length;
     const angleStep = 360 / totalItems;
     let currentAngle = 0;
@@ -174,26 +140,18 @@
     let startX = 0;
     let startAngle = 0;
     let autoRotateInterval;
-    let isHovering = false;
 
-    // Position items around the circle
+    // Position items in circle
     function positionItems(angle) {
       items.forEach((item, index) => {
         const itemAngle = (index * angleStep + angle) % 360;
         const radian = (itemAngle * Math.PI) / 180;
-        const z = Math.sin(radian) * 320;
-        const x = Math.cos(radian) * 280;
-        item.style.transform = `translateX(${x}px) translateZ(${z}px) rotateY(${itemAngle}deg)`;
-        item.style.opacity = Math.abs(Math.sin(radian)) * 0.7 + 0.3;
-        item.style.zIndex = Math.floor(Math.abs(Math.sin(radian)) * 10);
-      });
-    }
-
-    // Update active dot
-    function updateActiveDot(angle) {
-      const activeIndex = Math.round(((360 - (angle % 360)) / angleStep)) % totalItems;
-      navDots.forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === activeIndex);
+        const radius = 280;
+        const x = Math.sin(radian) * radius;
+        const z = Math.cos(radian) * radius;
+        item.style.transform = `translateX(${x}px) translateZ(${z}px)`;
+        item.style.opacity = 0.4 + (Math.cos(radian) + 1) / 2.5;
+        item.style.zIndex = Math.floor((Math.cos(radian) + 1) * 5);
       });
     }
 
@@ -201,19 +159,14 @@
     function startAutoRotate() {
       if (autoRotateInterval) clearInterval(autoRotateInterval);
       autoRotateInterval = setInterval(() => {
-        if (!isHovering && !isDragging) {
-          currentAngle = (currentAngle + 1) % 360;
+        if (!isDragging) {
+          currentAngle = (currentAngle + 0.8) % 360;
           positionItems(currentAngle);
-          updateActiveDot(currentAngle);
         }
       }, 50);
     }
 
-    function stopAutoRotate() {
-      if (autoRotateInterval) clearInterval(autoRotateInterval);
-    }
-
-    // Mouse/Touch Drag Events
+    // Drag Events
     function onDragStart(e) {
       isDragging = true;
       startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
@@ -225,10 +178,8 @@
       if (!isDragging) return;
       const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
       const deltaX = clientX - startX;
-      const newAngle = startAngle + (deltaX / 3);
-      currentAngle = ((newAngle % 360) + 360) % 360;
+      currentAngle = startAngle + (deltaX / 2);
       positionItems(currentAngle);
-      updateActiveDot(currentAngle);
     }
 
     function onDragEnd() {
@@ -236,39 +187,19 @@
       carousel.style.cursor = 'grab';
     }
 
-    // Hover events
-    carousel.addEventListener('mouseenter', () => { isHovering = true; });
-    carousel.addEventListener('mouseleave', () => { isHovering = false; });
-
-    // Drag events
+    // Event listeners
     carousel.addEventListener('mousedown', onDragStart);
     window.addEventListener('mousemove', onDragMove);
     window.addEventListener('mouseup', onDragEnd);
-    
-    // Touch events for mobile
     carousel.addEventListener('touchstart', onDragStart);
     window.addEventListener('touchmove', onDragMove);
     window.addEventListener('touchend', onDragEnd);
+    
+    carousel.style.cursor = 'grab';
 
-    // Navigation dot clicks
-    navDots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        const targetAngle = (360 - (index * angleStep)) % 360;
-        currentAngle = targetAngle;
-        positionItems(currentAngle);
-        updateActiveDot(currentAngle);
-      });
-    });
-
-    // Initial position
+    // Initialize
     positionItems(0);
-    updateActiveDot(0);
     startAutoRotate();
-
-    // Cleanup on page unload
-    window.addEventListener('beforeunload', () => {
-      stopAutoRotate();
-    });
   </script>
 </body>
 </html>
