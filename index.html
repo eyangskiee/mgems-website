@@ -65,7 +65,7 @@
     </div>
   </section>
 
-  <!-- 3D CAROUSEL GALLERY -->
+  <!-- 3D CAROUSEL GALLERY WITH MANUAL DRAG -->
   <section class="gallery">
     <div class="gallery-header">
       <div class="gallery-title">FACES OF <span>MANUEL GUIANGA</span></div>
@@ -131,13 +131,18 @@
       });
     });
 
-    // 3D Carousel Auto Rotation
+    // ========== 3D CAROUSEL WITH MANUAL DRAG ==========
     const carousel = document.getElementById('carousel3d');
     const items = document.querySelectorAll('.carousel-item');
     const totalItems = items.length;
     const angleStep = 360 / totalItems;
     let currentAngle = 0;
+    let isDragging = false;
+    let startX = 0;
+    let startAngle = 0;
+    let autoRotateInterval;
 
+    // Position items in circle
     function positionItems(angle) {
       items.forEach((item, index) => {
         const itemAngle = (index * angleStep + angle) % 360;
@@ -151,13 +156,51 @@
       });
     }
 
+    // Auto rotation (slower, smoother)
     function startAutoRotate() {
-      setInterval(() => {
-        currentAngle = (currentAngle + 1) % 360;
-        positionItems(currentAngle);
+      if (autoRotateInterval) clearInterval(autoRotateInterval);
+      autoRotateInterval = setInterval(() => {
+        if (!isDragging) {
+          currentAngle = (currentAngle + 0.5) % 360;
+          positionItems(currentAngle);
+        }
       }, 50);
     }
 
+    // Drag Events
+    function onDragStart(e) {
+      isDragging = true;
+      startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+      startAngle = currentAngle;
+      carousel.style.cursor = 'grabbing';
+    }
+
+    function onDragMove(e) {
+      if (!isDragging) return;
+      const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+      const deltaX = clientX - startX;
+      currentAngle = startAngle + (deltaX / 2);
+      positionItems(currentAngle);
+    }
+
+    function onDragEnd() {
+      isDragging = false;
+      carousel.style.cursor = 'grab';
+    }
+
+    // Mouse Events
+    carousel.addEventListener('mousedown', onDragStart);
+    window.addEventListener('mousemove', onDragMove);
+    window.addEventListener('mouseup', onDragEnd);
+    
+    // Touch Events for mobile
+    carousel.addEventListener('touchstart', onDragStart);
+    window.addEventListener('touchmove', onDragMove);
+    window.addEventListener('touchend', onDragEnd);
+    
+    carousel.style.cursor = 'grab';
+
+    // Initialize
     positionItems(0);
     startAutoRotate();
   </script>
