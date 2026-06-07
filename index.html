@@ -36,6 +36,7 @@
       <div class="hero-badge">EST. 2018</div>
       <div class="main-title">BRGY. MANUEL GUIANGA</div>
       
+      <!-- ECG Heartbeat Container -->
       <div class="ecg-container">
         <svg class="ecg-svg" viewBox="0 0 1000 80" preserveAspectRatio="none">
           <polyline class="ecg-line-glow" points="0,40 70,40 90,15 110,65 130,15 150,40 250,40 280,10 310,70 330,30 350,50 450,40 470,40 490,15 510,65 530,15 550,40 650,40 680,10 710,70 730,30 750,50 850,40 870,15 890,65 910,15 930,40 1000,40" />
@@ -64,7 +65,7 @@
     </div>
   </section>
 
-  <!-- 3D CAROUSEL GALLERY WITH DRAG ROTATION -->
+  <!-- 3D CAROUSEL GALLERY -->
   <section class="gallery">
     <div class="gallery-header">
       <div class="gallery-title">FACES OF <span>MANUEL GUIANGA</span></div>
@@ -130,18 +131,13 @@
       });
     });
 
-    // ========== DRAGGABLE 3D CAROUSEL ==========
+    // 3D Carousel Auto Rotation
     const carousel = document.getElementById('carousel3d');
     const items = document.querySelectorAll('.carousel-item');
     const totalItems = items.length;
     const angleStep = 360 / totalItems;
     let currentAngle = 0;
-    let isDragging = false;
-    let startX = 0;
-    let startAngle = 0;
-    let autoRotateInterval;
 
-    // Position items in circle
     function positionItems(angle) {
       items.forEach((item, index) => {
         const itemAngle = (index * angleStep + angle) % 360;
@@ -155,49 +151,13 @@
       });
     }
 
-    // Auto rotation
     function startAutoRotate() {
-      if (autoRotateInterval) clearInterval(autoRotateInterval);
-      autoRotateInterval = setInterval(() => {
-        if (!isDragging) {
-          currentAngle = (currentAngle + 0.8) % 360;
-          positionItems(currentAngle);
-        }
+      setInterval(() => {
+        currentAngle = (currentAngle + 1) % 360;
+        positionItems(currentAngle);
       }, 50);
     }
 
-    // Drag Events
-    function onDragStart(e) {
-      isDragging = true;
-      startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
-      startAngle = currentAngle;
-      carousel.style.cursor = 'grabbing';
-    }
-
-    function onDragMove(e) {
-      if (!isDragging) return;
-      const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
-      const deltaX = clientX - startX;
-      currentAngle = startAngle + (deltaX / 2);
-      positionItems(currentAngle);
-    }
-
-    function onDragEnd() {
-      isDragging = false;
-      carousel.style.cursor = 'grab';
-    }
-
-    // Event listeners
-    carousel.addEventListener('mousedown', onDragStart);
-    window.addEventListener('mousemove', onDragMove);
-    window.addEventListener('mouseup', onDragEnd);
-    carousel.addEventListener('touchstart', onDragStart);
-    window.addEventListener('touchmove', onDragMove);
-    window.addEventListener('touchend', onDragEnd);
-    
-    carousel.style.cursor = 'grab';
-
-    // Initialize
     positionItems(0);
     startAutoRotate();
   </script>
