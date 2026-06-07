@@ -4,474 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Brgy. Manuel Guianga Emergency Services</title>
+  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Barlow', sans-serif;
-      background: #0a0a0a;
-      color: white;
-      overflow-x: hidden;
-    }
-
-    /* NAVBAR */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 40px;
-      height: 70px;
-      background: rgba(10, 10, 10, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 2px solid #c0001c;
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .nav-logo-img {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #c0001c;
-    }
-
-    .nav-brand {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.5rem;
-      color: white;
-      letter-spacing: 2px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-weight: 600;
-      font-size: 0.85rem;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: #c0001c;
-    }
-
-    .nav-login-btn {
-      background: #c0001c;
-      color: white !important;
-      padding: 8px 20px;
-      border-radius: 30px;
-    }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-    }
-
-    .hamburger span {
-      width: 24px;
-      height: 2px;
-      background: white;
-    }
-
-    /* HERO */
-    .hero {
-      position: relative;
-      height: 100vh;
-      min-height: 600px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .hero-video {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.8));
-      z-index: 1;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 0 20px;
-      width: 100%;
-    }
-
-    /* EST. 2018 BADGE */
-    .hero-badge {
-      display: inline-block;
-      border: 2px solid #c0001c;
-      color: #c0001c;
-      font-weight: 700;
-      font-size: 0.75rem;
-      letter-spacing: 0.3em;
-      padding: 8px 24px;
-      margin-bottom: 25px;
-      text-transform: uppercase;
-    }
-
-    /* MAIN TITLE */
-    .main-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      letter-spacing: 3px;
-      color: white;
-      text-shadow: 0 0 20px rgba(0,0,0,0.5);
-      margin-bottom: 10px;
-    }
-
-    /* ECG CONTAINER - Behind the title */
-    .ecg-container {
-      position: relative;
-      max-width: 800px;
-      margin: 0 auto;
-      height: 100px;
-    }
-
-    .ecg-svg {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-      width: 100%;
-      height: 80px;
-    }
-
-    .ecg-line {
-      fill: none;
-      stroke: #c0001c;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 2500;
-      stroke-dashoffset: 2500;
-      animation: drawLine 3.5s linear infinite;
-    }
-
-    .ecg-line-glow {
-      fill: none;
-      stroke: rgba(192, 0, 28, 0.3);
-      stroke-width: 8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 2500;
-      stroke-dashoffset: 2500;
-      animation: drawLine 3.5s linear infinite;
-      filter: blur(4px);
-    }
-
-    @keyframes drawLine {
-      0% {
-        stroke-dashoffset: 2500;
-        opacity: 0;
-      }
-      15% {
-        opacity: 0.8;
-      }
-      60% {
-        stroke-dashoffset: 0;
-        opacity: 0.9;
-      }
-      100% {
-        stroke-dashoffset: 0;
-        opacity: 0;
-      }
-    }
-
-    /* EMERGENCY MEDICAL SERVICES - Main text with ECG behind */
-    .ems-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      letter-spacing: 4px;
-      color: #e8001f;
-      text-shadow: 0 0 15px rgba(0,0,0,0.5);
-      margin: 15px 0 20px;
-      position: relative;
-      display: inline-block;
-      padding: 0 20px;
-    }
-
-    /* Tagline */
-    .tagline {
-      font-size: clamp(0.7rem, 1.8vw, 0.85rem);
-      letter-spacing: 4px;
-      font-weight: 500;
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 15px;
-    }
-
-    .tagline-red {
-      color: #e8001f;
-      font-weight: 600;
-    }
-
-    /* Buttons */
-    .hero-buttons {
-      margin-top: 40px;
-    }
-
-    .hero-cta {
-      display: inline-block;
-      padding: 12px 35px;
-      background: #c0001c;
-      color: white;
-      text-decoration: none;
-      border-radius: 40px;
-      font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      transition: 0.2s;
-    }
-
-    .hero-cta:hover {
-      background: #8a0013;
-      transform: translateY(-2px);
-    }
-
-    .hero-login {
-      display: inline-block;
-      margin-left: 15px;
-      padding: 12px 30px;
-      border: 2px solid rgba(255,255,255,0.3);
-      color: white;
-      text-decoration: none;
-      border-radius: 40px;
-      font-weight: 600;
-      font-size: 0.85rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      transition: 0.2s;
-    }
-
-    .hero-login:hover {
-      border-color: #c0001c;
-      background: rgba(192,0,28,0.15);
-    }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 28px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.7rem;
-      letter-spacing: 0.35em;
-      color: rgba(255,255,255,0.4);
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%,100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(8px); }
-    }
-
-    /* ABOUT */
-    .about {
-      background: white;
-      padding: 80px 24px;
-    }
-
-    .about-inner {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .about-label {
-      background: #c0001c;
-      color: white;
-      display: inline-block;
-      padding: 6px 20px;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      margin-bottom: 40px;
-    }
-
-    .about-quote {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(1.5rem, 4vw, 2.2rem);
-      border-left: 5px solid #c0001c;
-      padding-left: 25px;
-      text-align: left;
-      color: #1a1a2e;
-      margin-bottom: 30px;
-    }
-
-    .about-body {
-      color: #444;
-      line-height: 1.8;
-      margin-bottom: 15px;
-    }
-
-    .about-body strong {
-      color: #c0001c;
-    }
-
-    /* GALLERY */
-    .gallery {
-      background: #0a0e1a;
-      padding: 80px 24px;
-    }
-
-    .gallery-header {
-      text-align: center;
-      margin-bottom: 50px;
-    }
-
-    .gallery-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      color: white;
-    }
-
-    .gallery-title span {
-      color: #e8001f;
-    }
-
-    .gallery-sub {
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 2px;
-      margin-top: 10px;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .gallery-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 12px;
-      cursor: pointer;
-    }
-
-    .gallery-card.wide {
-      grid-column: span 2;
-    }
-
-    .gallery-card img {
-      width: 100%;
-      height: 320px;
-      object-fit: cover;
-      transition: transform 0.4s;
-    }
-
-    .gallery-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .card-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(192,0,28,0.9), transparent);
-      padding: 30px 20px 15px;
-      text-align: center;
-      transform: translateY(100%);
-      transition: transform 0.3s;
-    }
-
-    .gallery-card:hover .card-overlay {
-      transform: translateY(0);
-    }
-
-    .card-overlay span {
-      color: white;
-      font-weight: 700;
-    }
-
-    /* VALUES */
-    .values {
-      background: #c0001c;
-      padding: 25px 24px;
-    }
-
-    .values-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-
-    .value-item {
-      color: white;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-
-    /* FOOTER */
-    .footer {
-      background: #0a0a0a;
-      text-align: center;
-      padding: 50px 24px 40px;
-      border-top: 4px solid #c0001c;
-    }
-
-    .footer-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.8rem;
-      color: #c0001c;
-      margin-bottom: 10px;
-    }
-
-    .footer p {
-      color: rgba(255,255,255,0.5);
-    }
-
-    @media (max-width: 768px) {
-      .navbar { padding: 0 20px; }
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      .gallery-grid { grid-template-columns: 1fr; }
-      .gallery-card.wide { grid-column: span 1; }
-      .gallery-card img { height: 260px; }
-      .ecg-container { height: 70px; }
-      .ecg-svg { height: 60px; }
-      .hero-buttons { display: flex; flex-direction: column; gap: 15px; align-items: center; }
-      .hero-login { margin-left: 0; }
-    }
-  </style>
 </head>
 <body>
 
@@ -499,13 +33,9 @@
     <div class="hero-overlay"></div>
     
     <div class="hero-content">
-      <!-- EST. 2018 -->
       <div class="hero-badge">EST. 2018</div>
-      
-      <!-- BRGY. MANUEL GUIANGA -->
       <div class="main-title">BRGY. MANUEL GUIANGA</div>
       
-      <!-- ECG Heartbeat Line Container -->
       <div class="ecg-container">
         <svg class="ecg-svg" viewBox="0 0 1000 80" preserveAspectRatio="none">
           <polyline class="ecg-line-glow" points="0,40 70,40 90,15 110,65 130,15 150,40 250,40 280,10 310,70 330,30 350,50 450,40 470,40 490,15 510,65 530,15 550,40 650,40 680,10 710,70 730,30 750,50 850,40 870,15 890,65 910,15 930,40 1000,40" />
@@ -513,13 +43,9 @@
         </svg>
       </div>
       
-      <!-- EMERGENCY MEDICAL SERVICES -->
       <div class="ems-title">EMERGENCY MEDICAL SERVICES</div>
-      
-      <!-- Tagline -->
       <div class="tagline">ONE TEAM. ONE MISSION. — <span class="tagline-red">SAVING LIVES, SERVING OUR COMMUNITY.</span></div>
       
-      <!-- Buttons -->
       <div class="hero-buttons">
         <a href="#about" class="hero-cta">EXPLORE MGEMS</a>
         <a href="login.html" class="hero-login">STAFF PORTAL →</a>
@@ -528,7 +54,7 @@
     <div class="scroll-hint">✦ SCROLL ✦</div>
   </section>
 
-  <!-- ABOUT -->
+  <!-- ABOUT SECTION -->
   <section id="about" class="about">
     <div class="about-inner">
       <div class="about-label">EMS WEEK TRIBUTE</div>
@@ -538,22 +64,44 @@
     </div>
   </section>
 
-  <!-- GALLERY -->
+  <!-- 3D CAROUSEL GALLERY SECTION -->
   <section class="gallery">
     <div class="gallery-header">
       <div class="gallery-title">FACES OF <span>MANUEL GUIANGA</span></div>
       <div class="gallery-sub">The hearts and hands behind every emergency response</div>
     </div>
-    <div class="gallery-grid">
-      <div class="gallery-card wide"><img src="assets/photo1.jpg" alt="First Responders"><div class="card-overlay"><span>First Responders</span></div></div>
-      <div class="gallery-card"><img src="assets/photo2.jpg" alt="EMTs & Nurses"><div class="card-overlay"><span>EMTs & Nurses</span></div></div>
-      <div class="gallery-card"><img src="assets/photo3.jpg" alt="Emergency Physicians"><div class="card-overlay"><span>Emergency Physicians</span></div></div>
-      <div class="gallery-card"><img src="assets/photo4.jpg" alt="Support Team"><div class="card-overlay"><span>Support Team</span></div></div>
-      <div class="gallery-card wide"><img src="assets/photo5.jpg" alt="Leadership Committee"><div class="card-overlay"><span>Leadership Committee</span></div></div>
+    
+    <div class="carousel-wrapper">
+      <div class="carousel-3d">
+        <div class="carousel-item" style="transform: rotateY(0deg) translateZ(300px);">
+          <img src="assets/photo1.jpg" alt="First Responders">
+          <div class="carousel-caption"><span>First Responders</span></div>
+        </div>
+        <div class="carousel-item" style="transform: rotateY(60deg) translateZ(300px);">
+          <img src="assets/photo2.jpg" alt="EMTs & Nurses">
+          <div class="carousel-caption"><span>EMTs & Nurses</span></div>
+        </div>
+        <div class="carousel-item" style="transform: rotateY(120deg) translateZ(300px);">
+          <img src="assets/photo3.jpg" alt="Emergency Physicians">
+          <div class="carousel-caption"><span>Emergency Physicians</span></div>
+        </div>
+        <div class="carousel-item" style="transform: rotateY(180deg) translateZ(300px);">
+          <img src="assets/photo4.jpg" alt="Support Team">
+          <div class="carousel-caption"><span>Support Team</span></div>
+        </div>
+        <div class="carousel-item" style="transform: rotateY(240deg) translateZ(300px);">
+          <img src="assets/photo5.jpg" alt="Leadership Committee">
+          <div class="carousel-caption"><span>Leadership Committee</span></div>
+        </div>
+        <div class="carousel-item" style="transform: rotateY(300deg) translateZ(300px);">
+          <img src="assets/photo1.jpg" alt="Medical Response">
+          <div class="carousel-caption"><span>Medical Response</span></div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- VALUES -->
+  <!-- VALUES BAR -->
   <div class="values">
     <div class="values-inner">
       <span class="value-item">🤝 Compassion</span>
