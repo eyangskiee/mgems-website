@@ -65,36 +65,44 @@
     </div>
   </section>
 
-  <!-- 3D CAROUSEL GALLERY WITH MANUAL DRAG -->
+  <!-- 3D CAROUSEL GALLERY WITH ARROW BUTTONS -->
   <section class="gallery">
     <div class="gallery-header">
       <div class="gallery-title">FACES OF <span>MANUEL GUIANGA</span></div>
       <div class="gallery-sub">The hearts and hands behind every emergency response</div>
     </div>
     
-    <div class="carousel-wrapper">
-      <div class="carousel-3d" id="carousel3d">
-        <div class="carousel-item" data-index="0">
-          <img src="assets/photo1.jpg" alt="First Responders">
-          <div class="carousel-caption"><span>First Responders</span></div>
-        </div>
-        <div class="carousel-item" data-index="1">
-          <img src="assets/photo2.jpg" alt="EMTs & Nurses">
-          <div class="carousel-caption"><span>EMTs & Nurses</span></div>
-        </div>
-        <div class="carousel-item" data-index="2">
-          <img src="assets/photo3.jpg" alt="Emergency Physicians">
-          <div class="carousel-caption"><span>Emergency Physicians</span></div>
-        </div>
-        <div class="carousel-item" data-index="3">
-          <img src="assets/photo4.jpg" alt="Support Team">
-          <div class="carousel-caption"><span>Support Team</span></div>
-        </div>
-        <div class="carousel-item" data-index="4">
-          <img src="assets/photo5.jpg" alt="Leadership Committee">
-          <div class="carousel-caption"><span>Leadership Committee</span></div>
+    <div class="carousel-container">
+      <!-- Left Arrow Button -->
+      <button class="carousel-arrow left-arrow" id="prevBtn">◀</button>
+      
+      <div class="carousel-wrapper">
+        <div class="carousel-3d" id="carousel3d">
+          <div class="carousel-item" data-index="0">
+            <img src="assets/photo1.jpg" alt="First Responders">
+            <div class="carousel-caption"><span>First Responders</span></div>
+          </div>
+          <div class="carousel-item" data-index="1">
+            <img src="assets/photo2.jpg" alt="EMTs & Nurses">
+            <div class="carousel-caption"><span>EMTs & Nurses</span></div>
+          </div>
+          <div class="carousel-item" data-index="2">
+            <img src="assets/photo3.jpg" alt="Emergency Physicians">
+            <div class="carousel-caption"><span>Emergency Physicians</span></div>
+          </div>
+          <div class="carousel-item" data-index="3">
+            <img src="assets/photo4.jpg" alt="Support Team">
+            <div class="carousel-caption"><span>Support Team</span></div>
+          </div>
+          <div class="carousel-item" data-index="4">
+            <img src="assets/photo5.jpg" alt="Leadership Committee">
+            <div class="carousel-caption"><span>Leadership Committee</span></div>
+          </div>
         </div>
       </div>
+      
+      <!-- Right Arrow Button -->
+      <button class="carousel-arrow right-arrow" id="nextBtn">▶</button>
     </div>
   </section>
 
@@ -131,7 +139,7 @@
       });
     });
 
-    // ========== 3D CAROUSEL WITH MANUAL DRAG ==========
+    // ========== 3D CAROUSEL WITH ARROW BUTTONS ==========
     const carousel = document.getElementById('carousel3d');
     const items = document.querySelectorAll('.carousel-item');
     const totalItems = items.length;
@@ -156,7 +164,19 @@
       });
     }
 
-    // Auto rotation (slower, smoother)
+    // Rotate to specific angle
+    function rotateTo(angle) {
+      currentAngle = angle;
+      positionItems(currentAngle);
+    }
+
+    // Rotate by step
+    function rotateStep(direction) {
+      currentAngle = (currentAngle + direction * 60) % 360;
+      positionItems(currentAngle);
+    }
+
+    // Auto rotation
     function startAutoRotate() {
       if (autoRotateInterval) clearInterval(autoRotateInterval);
       autoRotateInterval = setInterval(() => {
@@ -187,6 +207,21 @@
       isDragging = false;
       carousel.style.cursor = 'grab';
     }
+
+    // Arrow button events
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    prevBtn.addEventListener('click', () => {
+      rotateStep(-1);
+      // Reset auto rotation timer to prevent conflict
+      startAutoRotate();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      rotateStep(1);
+      startAutoRotate();
+    });
 
     // Mouse Events
     carousel.addEventListener('mousedown', onDragStart);
